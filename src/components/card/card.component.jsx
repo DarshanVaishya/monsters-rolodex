@@ -4,6 +4,7 @@ import "./card.styles.css";
 class Card extends Component {
 	render() {
 		const { name, email, id } = this.props.data;
+		console.log(this.props.data);
 
 		return (
 			<div key={id} className="card-container">

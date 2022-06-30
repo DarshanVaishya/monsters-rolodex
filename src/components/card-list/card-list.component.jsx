@@ -4,7 +4,6 @@ import "./card-list.styles.css";
 
 class CardList extends Component {
 	render() {
-		console.log("CardList render");
 		const { monsters } = this.props;
 
 		return (
