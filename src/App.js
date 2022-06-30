@@ -6,6 +6,7 @@ import "./App.css";
 function App() {
 	const [input, setInput] = useState("");
 	const [monsters, setMonsters] = useState([]);
+	const [filteredMonsters, setFiltered] = useState(monsters);
 
 	useEffect(() => {
 		fetch("https://jsonplaceholder.typicode.com/users")
@@ -13,13 +14,16 @@ function App() {
 			.then((data) => setMonsters(data));
 	}, []);
 
+	useEffect(() => {
+		let filtered = input
+			? monsters.filter((monster) => monster.name.toLowerCase().includes(input))
+			: monsters;
+		setFiltered(filtered);
+	}, [input, monsters]);
+
 	const onSearchChange = (e) => {
 		setInput(() => e.target.value.toLowerCase());
 	};
-
-	let filteredMonsters = input
-		? monsters.filter((monster) => monster.name.toLowerCase().includes(input))
-		: monsters;
 
 	return (
 		<div className="App">
